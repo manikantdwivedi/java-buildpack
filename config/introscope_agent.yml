@@ -15,6 +15,6 @@
 
 # Configuration for the CA Wily framework
 ---
-repository_root: "/root/introscope/"
+repository_root: "http://truss-apj-itc.ca.com/builds/InternalBuilds/10.5.2_ConfigMigration-ISCP/build-000010(10.5.2.0)/introscope10.5.2.0/"
 version: 9.7.+
 default_agent_name: ! '$(ruby -e "require ''json'' ; puts JSON.parse(ENV[''VCAP_APPLICATION''])[''application_name'']")'
