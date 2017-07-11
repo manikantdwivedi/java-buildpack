@@ -16,5 +16,5 @@
 # Configuration for the CA Wily framework
 ---
 repository_root: "http://isl-dsdc.ca.com/artifactory/apm-third-party/com/ca/apm/libs/docker/extension/"
-version: 10.5.2.0
+version: 10.5.+
 default_agent_name: ! '$(ruby -e "require ''json'' ; puts JSON.parse(ENV[''VCAP_APPLICATION''])[''application_name'']")'
