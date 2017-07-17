@@ -81,7 +81,8 @@ module JavaBuildpack
       end
 
       def agent_manager(credentials)
-        agent_manager = ssl?(credentials) ? 'https://' : 'http://'
+        #agent_manager = ssl?(credentials) ? 'https://' : 'http://'
+        agent_manager = ssl?(credentials)
         agent_manager += host_name(credentials)
 
         port = port(credentials)
