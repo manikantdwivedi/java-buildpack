@@ -25,11 +25,13 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#detect)
       def detect
-        enabled? ? "#{Debug.to_s.dash_case}=#{port}" : nil
+        enabled? ? "#{self.class.to_s.dash_case}=#{port}" : nil
       end
 
       # (see JavaBuildpack::Component::BaseComponent#compile)
-      def compile; end
+      def compile
+        puts "-----> Debugging Enabled on port #{port}#{', suspended on start' if @configuration['suspend']}"
+      end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release

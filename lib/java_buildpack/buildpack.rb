@@ -25,6 +25,7 @@ require 'java_buildpack/component/java_opts'
 require 'java_buildpack/component/mutable_java_home'
 require 'java_buildpack/component/security_providers'
 require 'java_buildpack/logging/logger_factory'
+require 'java_buildpack/util/colorize'
 require 'java_buildpack/util/configuration_utils'
 require 'java_buildpack/util/constantize'
 require 'java_buildpack/util/snake_case'
@@ -81,6 +82,8 @@ module JavaBuildpack
       component_detection('framework', @frameworks, false).map(&:release)
 
       commands << container.release
+
+      commands.insert 0, @java_opts.as_env_var
       command = commands.flatten.compact.join(' && ')
 
       payload = {
@@ -98,7 +101,7 @@ module JavaBuildpack
 
     private
 
-    BUILDPACK_MESSAGE = '-----> Java Buildpack Version: %s'.freeze
+    BUILDPACK_MESSAGE = "#{'----->'.red.bold} #{'Java Buildpack'.blue.bold} %s".freeze
 
     LOAD_ROOT = (Pathname.new(__FILE__).dirname + '..').freeze
 
@@ -111,6 +114,8 @@ module JavaBuildpack
       log_environment_variables
       log_application_contents application
 
+      @java_opts = Component::JavaOpts.new(app_dir)
+
       mutable_java_home   = Component::MutableJavaHome.new
       immutable_java_home = Component::ImmutableJavaHome.new mutable_java_home, app_dir
 
@@ -120,7 +125,7 @@ module JavaBuildpack
         'application'           => application,
         'env_vars'              => Component::EnvironmentVariables.new(app_dir),
         'extension_directories' => Component::ExtensionDirectories.new(app_dir),
-        'java_opts'             => Component::JavaOpts.new(app_dir),
+        'java_opts'             => @java_opts,
         'security_providers'    => Component::SecurityProviders.new
       }
 

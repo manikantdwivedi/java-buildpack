@@ -38,6 +38,8 @@ jres:
 # command after any Java Opts added by previous frameworks.
 frameworks:
   - "JavaBuildpack::Framework::AppDynamicsAgent"
+  - "JavaBuildpack::Framework::AspectjWeaverAgent"
+  - "JavaBuildpack::Framework::ClientCertificateMapper"
   - "JavaBuildpack::Framework::ContainerCustomizer"
   - "JavaBuildpack::Framework::ContainerSecurityProvider"
   - "JavaBuildpack::Framework::ContrastSecurityAgent"
@@ -61,5 +63,6 @@ frameworks:
   - "JavaBuildpack::Framework::SpringAutoReconfiguration"
   - "JavaBuildpack::Framework::SpringInsight"
   - "JavaBuildpack::Framework::YourKitProfiler"
+  - "JavaBuildpack::Framework::TakipiAgent"
   - "JavaBuildpack::Framework::SecurityProviders"
   - "JavaBuildpack::Framework::JavaOpts"

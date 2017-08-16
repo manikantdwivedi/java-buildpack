@@ -25,11 +25,13 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#detect)
       def detect
-        enabled? ? "#{Jmx.to_s.dash_case}=#{port}" : nil
+        enabled? ? "#{self.class.to_s.dash_case}=#{port}" : nil
       end
 
       # (see JavaBuildpack::Component::BaseComponent#compile)
-      def compile; end
+      def compile
+        puts "-----> JMX Enabled on port #{port}"
+      end
 
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
